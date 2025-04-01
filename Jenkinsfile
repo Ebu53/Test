@@ -1,6 +1,6 @@
 pipeline {
 
-    agent { label 'MacOs' }
+    agent { label 'built-in' }
 
 
     environment {
@@ -9,9 +9,7 @@ pipeline {
     }
  
     triggers {
-
-         pollSCM('H/10 * * * *')
-
+        pollSCM('* * * * *')
      }
 
 
@@ -36,37 +34,10 @@ pipeline {
         }
 
 
-        stage('Install Dependencies') {
-
-            steps {
-
-                script {
-
-                   sh 'ls'
-
-                }
-
-            }
-
-        }
-
-
 
     } 
 
     post {
-
-        always {
-
-            script {
-
-                // Clean up based on environment
-                // test
-                deleteDir()
-
-            }
-
-        }
 
         success {
 
