@@ -5,10 +5,7 @@ pipeline {
 
     environment {
 
-        GITHUB_REPO = "picarro/pcubed-mobile.git"
-
-        GITHUB_TOKEN = credentials('bitkraft-github-token')
-
+        GITHUB_REPO = "Ebu53/Test"
     }
  
     triggers {
@@ -26,19 +23,11 @@ pipeline {
 
                 script {
 
-                    def selectedBranch = 'develop'
-
-                    withCredentials([string(credentialsId: 'bitkraft-github-token', variable: 'TOKEN')]) {
-
+                        def selectedBranch = 'dev'
                         sh "git config --global credential.helper store"
-
                         def repoUrl = "https://${TOKEN}@github.com/${GITHUB_REPO}"
-
-                        // sh "git clone ${repoUrl} ."
-
+                        sh "git clone ${repoUrl} ."
                         sh "git checkout ${selectedBranch}"
-
-                    }
 
                 }
 
@@ -53,7 +42,7 @@ pipeline {
 
                 script {
 
-                   sh 'test'
+                   sh 'ls'
 
                 }
 
@@ -73,25 +62,7 @@ pipeline {
 
                 // Clean up based on environment
 
-                sh """
-
-                    rm -f .netrc
-
-                    rm -f android/app/my-upload-key.keystore
-
-                    if [ "${params.ENVIRONMENT}" = "dev" ]; then
-
-                        rm -f .env.development
-
-                    else
-
-                        rm -f .env.staging
-
-                    fi
-
-                    echo "Workspace cleaned up successfully"
-
-                """
+                deleteDir()
 
             }
 
