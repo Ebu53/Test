@@ -6,6 +6,7 @@ pipeline {
     environment {
 
         GITHUB_REPO = "Ebu53/Test"
+        TOKEN = "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"
     }
  
     triggers {
@@ -20,8 +21,8 @@ pipeline {
             steps {
 
                 script {
-
-                        def selectedBranch = 'dev'
+                        echo 'Hello, Jenkins!'
+                        def selectedBranch = 'stage'
                         sh "git config --global credential.helper store"
                         def repoUrl = "https://${TOKEN}@github.com/${GITHUB_REPO}"
                         sh "git clone ${repoUrl} ."
