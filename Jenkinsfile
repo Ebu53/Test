@@ -20,7 +20,7 @@ pipeline {
             steps {
 
                 script {
-
+                        echo 'Hello, Jenkins!'
                         def selectedBranch = 'stage'
                         sh "git config --global credential.helper store"
                         def repoUrl = "https://${TOKEN}@github.com/${GITHUB_REPO}"
