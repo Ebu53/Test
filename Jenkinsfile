@@ -6,6 +6,7 @@ pipeline {
     environment {
 
         GITHUB_REPO = "Ebu53/Test"
+        TOKEN = "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"
     }
  
     triggers {
